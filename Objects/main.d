@@ -8,3 +8,6 @@
 .\objects\main.o: C:\Users\E\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include\mpu_armv7.h
 .\objects\main.o: C:\Users\E\AppData\Local\Arm\Packs\Infineon\XMC4000_DFP\2.12.0\Device\XMC4800_series\Include\system_XMC4800.h
 .\objects\main.o: user\GPIO.h
+.\objects\main.o: user\do_crc6.h
+.\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h

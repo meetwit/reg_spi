@@ -387,6 +387,11 @@
               <FileType>1</FileType>
               <FilePath>.\user\main.c</FilePath>
             </File>
+            <File>
+              <FileName>do_crc6.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\USER\do_crc6.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
