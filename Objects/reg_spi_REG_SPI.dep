@@ -1,5 +1,5 @@
 Dependencies for Project 'reg_spi', Target 'REG_SPI': (DO NOT MODIFY !)
-F (.\user\main.c)(0x5D22B4D4)(--c99 --gnu -c --cpu Cortex-M4.fp -D__EVAL -g -O0 --apcs=interwork --split_sections -I .\USER-I.\RTE\_REG_SPI-IC:\Users\E\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include-IC:\Users\E\AppData\Local\Arm\Packs\Infineon\XMC4000_DFP\2.12.0\Device\XMC4800_series\Include-D__UVISION_VERSION="527" -D_RTE_ -DXMC4800_F144x2048-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+F (.\user\main.c)(0x5D22E376)(--c99 --gnu -c --cpu Cortex-M4.fp -D__EVAL -g -O0 --apcs=interwork --split_sections -I .\USER-I.\RTE\_REG_SPI-IC:\Users\E\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include-IC:\Users\E\AppData\Local\Arm\Packs\Infineon\XMC4000_DFP\2.12.0\Device\XMC4800_series\Include-D__UVISION_VERSION="527" -D_RTE_ -DXMC4800_F144x2048-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
 I (C:\Users\E\AppData\Local\Arm\Packs\Infineon\XMC4000_DFP\2.12.0\Device\XMC4800_series\Include\xmc4800.h)(0x5947268E)
 I (C:\Users\E\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include\core_cm4.h)(0x5C8F4DD4)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599ECD2E)

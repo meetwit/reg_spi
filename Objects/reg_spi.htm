@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\reg_spi.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\reg_spi.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Mon Jul 08 11:13:26 2019
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Mon Jul 08 14:32:24 2019
 <BR><P>
 <H3>Maximum Stack Usage =         32 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -95,7 +95,7 @@ Function Pointers
  <LI><a href="#[c]">SCU_0_IRQHandler</a> from startup_xmc4800.o(.text) referenced from startup_xmc4800.o(RESET)
  <LI><a href="#[6d]">SDMMC0_0_IRQHandler</a> from startup_xmc4800.o(.text) referenced from startup_xmc4800.o(RESET)
  <LI><a href="#[8]">SVC_Handler</a> from startup_xmc4800.o(.text) referenced from startup_xmc4800.o(RESET)
- <LI><a href="#[b]">SysTick_Handler</a> from startup_xmc4800.o(.text) referenced from startup_xmc4800.o(RESET)
+ <LI><a href="#[b]">SysTick_Handler</a> from main.o(i.SysTick_Handler) referenced from startup_xmc4800.o(RESET)
  <LI><a href="#[72]">SystemInit</a> from system_xmc4800.o(i.SystemInit) referenced from startup_xmc4800.o(.text)
  <LI><a href="#[6e]">USB0_0_IRQHandler</a> from startup_xmc4800.o(.text) referenced from startup_xmc4800.o(RESET)
  <LI><a href="#[58]">USIC0_0_IRQHandler</a> from startup_xmc4800.o(.text) referenced from startup_xmc4800.o(RESET)
@@ -494,9 +494,6 @@ Global Symbols
 <P><STRONG><a name="[8]"></a>SVC_Handler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_xmc4800.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> startup_xmc4800.o(RESET)
 </UL>
-<P><STRONG><a name="[b]"></a>SysTick_Handler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_xmc4800.o(.text))
-<BR>[Address Reference Count : 1]<UL><LI> startup_xmc4800.o(RESET)
-</UL>
 <P><STRONG><a name="[6e]"></a>USB0_0_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_xmc4800.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> startup_xmc4800.o(RESET)
 </UL>
@@ -684,7 +681,7 @@ Global Symbols
 
 <P><STRONG><a name="[c4]"></a>__semihosting_library_function</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, indicate_semi.o(.text), UNUSED)
 
-<P><STRONG><a name="[94]"></a>BISS_ConfigureFIFO</STRONG> (Thumb, 92 bytes, Stack size 0 bytes, main.o(i.BISS_ConfigureFIFO))
+<P><STRONG><a name="[94]"></a>BISS_ConfigureFIFO</STRONG> (Thumb, 88 bytes, Stack size 0 bytes, main.o(i.BISS_ConfigureFIFO))
 <BR><BR>[Called By]<UL><LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
@@ -709,6 +706,9 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
+<P><STRONG><a name="[b]"></a>SysTick_Handler</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, main.o(i.SysTick_Handler))
+<BR>[Address Reference Count : 1]<UL><LI> startup_xmc4800.o(RESET)
+</UL>
 <P><STRONG><a name="[8e]"></a>SystemCoreClockSetup</STRONG> (Thumb, 680 bytes, Stack size 8 bytes, system_xmc4800.o(i.SystemCoreClockSetup))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = SystemCoreClockSetup &rArr; SystemCoreClockUpdate
 </UL>
@@ -747,7 +747,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[82]"></a>main</STRONG> (Thumb, 454 bytes, Stack size 0 bytes, main.o(i.main))
+<P><STRONG><a name="[82]"></a>main</STRONG> (Thumb, 606 bytes, Stack size 0 bytes, main.o(i.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = main &rArr; SystemCoreClockUpdate
 </UL>
 <BR>[Calls]<UL><LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fast_crc6_2

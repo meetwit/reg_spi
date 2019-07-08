@@ -2,6 +2,8 @@
 #include "GPIO.h"
 #include "do_crc6.h"
 
+#define TICKS_PER_SECOND 1000000
+
 struct bissc{
 	//uint8_t head;		//  3bit
 	uint8_t start;		//  1bit
@@ -18,13 +20,15 @@ struct bissc{
 uint8_t RxPacket[5],crc_ans=0,crc_input[6];
 uint32_t crc_erro_count=0,crc_cor_count=0,crc_3_count=0,crc_4_count=0;
 struct bissc bissc_test={0};
+uint32_t sys_time = 0,temp_sys_time[2]={0};
+uint8_t temp_sys=0;
 
 	void SPI_ConfigureBaudRate(void)
 {
 
 	uint32_t Brg_PDiv = 0;
 
-	Brg_PDiv = 6;			//144/2/(pdiv+1)	约等于10M
+	Brg_PDiv = 9;			//144/2/(pdiv+1)	9的话约等于7.2M
 
 	USIC0_CH0->FDR |= 0x3ff43ff;
 
@@ -119,11 +123,11 @@ void BISS_ConfigureFIFO(void)
 	USIC0_CH0->TCSR |= 0x40;										//The data word in TBUF is valid for transmission and a transmission start is possible. 
 																							//New data should not be written to a TBUFx input location while TDV = 1.
 	USIC0_CH0->RBCTR=0;
-	USIC0_CH0->RBCTR  =0x0000500;              // fifo size 64  limit 40   DP 0
-	USIC0_CH0->RBCTR  =0x3000500;								//0x6003e00
+	USIC0_CH0->RBCTR  =0x0002800;              // fifo size 64  limit 40   DP 0
+	USIC0_CH0->RBCTR  =0x6002800;								//0x6003e00
 	USIC0_CH0->TBCTR=0;
-	USIC0_CH0->TBCTR  =0x0000500;              // fifo size 2  limit  2    DP 62
-	USIC0_CH0->TBCTR  =0x3000505;								//0x100023e
+	USIC0_CH0->TBCTR  =0x0000800;              // fifo size 2  limit  2    DP 62
+	USIC0_CH0->TBCTR  =0x3000828;								//0x100023e
 
 }
 
@@ -159,24 +163,20 @@ int main(){
 	SystemCoreClockUpdate();
 	SPI_vInit();
 	BISS_ConfigureFIFO();										//FIFO
+	SysTick_Config(SystemCoreClock / TICKS_PER_SECOND);
 	
 		BISS_vSensorModeSingle(1);		//推空缓存？
-	for(st=0;st<5;st++){
-			if((USIC0_CH0->TRBSR&0x0008)==0x0008){
-				;
-			}	//等待接收缓存有数据
-			else{
-				RxPacket[st]= (USIC0_CH0->OUTR&0x000000ff);			//取数据低8位，根据配置的位数读取，最多16位
-			}
-		}
+	while((USIC0_CH0->TRBSR&0x0008)==0x0008){;}	//等待接收缓存有数据
+			RxPacket[st]= (USIC0_CH0->OUTR&0x000000ff);			//取数据低8位，根据配置的位数读取，最多16位
+
 	while(1){
+		temp_sys_time[0] = sys_time;
 		BISS_vSensorModeSingle(5);
 		
 		for(st=0;st<5;st++){
 			while((USIC0_CH0->TRBSR&0x0008)==0x0008);		//等待接收缓存有数据
 			RxPacket[st]= (USIC0_CH0->OUTR&0x000000ff);			//取数据低8位，根据配置的位数读取，最多16位
 		}
-		
 		if(RxPacket[0]&0x10){
 			crc_3_count++;
 			//bissc_test.head 	= (RxPacket[0]&0xe0)>>5;		//3bit
@@ -217,7 +217,28 @@ int main(){
 			crc_cor_count++;
 		}
 		
+		temp_sys_time[1] = sys_time;
+		
+		temp_sys = temp_sys_time[1] - temp_sys_time[0];
+		
+		st=1;
+		while(st++);
+		st=1;
+		while(st++);
+		st=1;
+		while(st++);
+		st=1;
+		while(st++);
+		st=1;
 		while(st++);		//间隔10us，模拟时间片轮询，此时执行其他任务
 										//也避免编码器在无CPU干预情况下结束对下一次的错误读取，该时间400ns左右。
 	}
+}
+
+
+
+
+void SysTick_Handler (void)          
+{
+	sys_time++;
 }
